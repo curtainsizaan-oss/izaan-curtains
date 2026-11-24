@@ -1,3 +1,4 @@
+
 var CATS=["Curtains","Blackout","Sheer","Wallpapers","Roller Blinds","Zebra Blinds","Motorized"];
 var TILES=[["Curtains","Velvet, linen and drapes","#6b2c3a"],["Wallpapers","Textures, damask and modern prints","#3c5a49"],["Roller Blinds","Roller and zebra blinds","#5d6166"],["Motorized","Remote and smart control","#3a3d42"]];
 var DEF=[
@@ -10,7 +11,9 @@ var DEF=[
 {id:"d6",name:"Classic Roller",cat:"Roller Blinds",desc:"Clean, minimal roller blinds in many fabrics.",c:"#7d8b8f"},
 {id:"d7",name:"Zebra Duo",cat:"Zebra Blinds",desc:"Alternating sheer and solid bands for adjustable light.",c:"#b3b3ad"},
 {id:"d5",name:"Smart Track Curtain",cat:"Motorized",desc:"Remote-controlled motorized curtain system.",c:"#4d5258"}];
+
 var SLD=[{e:"Luxury Curtains",h:"Drapes That Define a Room",p:"Velvet, linen and sheer curtains, tailored to your windows.",c:"Curtains",b:"#4a4540"},{e:"Motorized Curtains",h:"Elegance at the Touch of a Button",p:"Silent motorized tracks with remote, wall and smart control.",c:"Motorized",b:"#3a3d42"},{e:"Blinds",h:"Light, Perfectly Balanced",p:"Roller and zebra blinds for clean, modern interiors.",c:"Roller Blinds",b:"#4b4f52"},{e:"Wallpapers",h:"Walls With Character",p:"Textured and patterned wallpapers for feature walls.",c:"Wallpapers",b:"#46433d"}];
+
 /* ---- Data layer: all reads/writes go through Store. To move to Firebase later,
    replace Store.get/Store.set (see README.md) — nothing else needs to change. ---- */
 var Store={get:function(k){return localStorage.getItem(k)},set:function(k,v){localStorage.setItem(k,v)}};
@@ -38,6 +41,11 @@ $("pc").innerHTML=$("qc").innerHTML;$("gc").innerHTML=$("qc").innerHTML;
 var i="";
 if(S.ph)i+='<p><b>Phone</b>'+esc(S.ph)+'</p>';
 if(S.wa)i+='<p><b>WhatsApp</b>+'+esc(wnum())+'</p>';
+
+/* IZAAN — Additional contact number */
+i+='<p><b>Phone 2</b><a href="tel:+919567140786">+91 95671 40786</a></p>';
+i+='<p><b>WhatsApp 2</b><a href="https://wa.me/919567140786" target="_blank" rel="noopener">+91 95671 40786</a></p>';
+
 if(S.em)i+='<p><b>Email</b>'+esc(S.em)+'</p>';
 if(S.ad)i+='<p><b>Address</b>'+esc(S.ad)+'</p>';
 $("info").innerHTML=i||'<p>Contact details will appear here once added in the admin panel.</p>';
@@ -118,6 +126,7 @@ if(d.dl){LG="";save()}});
 $("lock").onclick=function(){authed=false;gate()};
 window.addEventListener("hashchange",route);
 render();loadAssetSlides();route();
+
 /* IZAAN — Firebase Cloud Connection */
 
 (async function () {
@@ -372,6 +381,7 @@ render();loadAssetSlides();route();
 })().catch(function (e) {
   console.error("Firebase error:", e);
 });
+
 /* IZAAN Automatic Image Compression */
 
 shrink = function(f, w, type, cb) {
