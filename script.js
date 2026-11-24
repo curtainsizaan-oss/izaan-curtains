@@ -372,3 +372,85 @@ render();loadAssetSlides();route();
 })().catch(function (e) {
   console.error("Firebase error:", e);
 });
+/* IZAAN Automatic Image Compression */
+
+shrink = function(f, w, type, cb) {
+  const MAX_BYTES = 450 * 1024;
+  const reader = new FileReader();
+
+  reader.onerror = function() {
+    alert("Unable to read image.");
+  };
+
+  reader.onload = function() {
+    const img = new Image();
+
+    img.onerror = function() {
+      alert("Unsupported image format.");
+    };
+
+    img.onload = function() {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      let scale = Math.min(
+        1, w / Math.max(img.width, img.height)
+      );
+
+      let quality = 0.88;
+      let result = "";
+      const format = type === "png"
+        ? "image/png"
+        : "image/jpeg";
+
+      for (let i = 0; i < 60; i++) {
+        canvas.width = Math.max(
+          1, Math.round(img.width * scale)
+        );
+
+        canvas.height = Math.max(
+          1, Math.round(img.height * scale)
+        );
+
+        ctx.clearRect(
+          0, 0, canvas.width, canvas.height
+        );
+
+        if (format === "image/jpeg") {
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(
+            0, 0, canvas.width, canvas.height
+          );
+        }
+
+        ctx.drawImage(
+          img, 0, 0,
+          canvas.width, canvas.height
+        );
+
+        result = canvas.toDataURL(format, quality);
+
+        if (
+          new Blob([result]).size <= MAX_BYTES
+          && result.startsWith("data:image/")
+        ) {
+          cb(result);
+          return;
+        }
+
+        if (format === "image/jpeg" && quality > 0.55) {
+          quality -= 0.07;
+        } else {
+          scale *= 0.85;
+          quality = 0.85;
+        }
+      }
+
+      alert("Image compression failed. Try another photo.");
+    };
+
+    img.src = reader.result;
+  };
+
+  reader.readAsDataURL(f);
+};
