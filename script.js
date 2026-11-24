@@ -118,3 +118,257 @@ if(d.dl){LG="";save()}});
 $("lock").onclick=function(){authed=false;gate()};
 window.addEventListener("hashchange",route);
 render();loadAssetSlides();route();
+/* IZAAN — Firebase Cloud Connection */
+
+(async function () {
+  const config = window.IZAAN_FIREBASE_CONFIG;
+
+  if (!config) {
+    console.error("Firebase config missing");
+    return;
+  }
+
+  const { initializeApp } = await import(
+    "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js"
+  );
+
+  const {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    onAuthStateChanged,
+    signOut
+  } = await import(
+    "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js"
+  );
+
+  const {
+    getFirestore,
+    collection,
+    doc,
+    onSnapshot,
+    setDoc,
+    getDocs,
+    writeBatch
+  } = await import(
+    "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js"
+  );
+
+  const app = initializeApp(config);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const ADMIN = "curtainsizaan@gmail.com";
+
+  authed = false;
+  delete S.pin;
+
+  function isAdmin() {
+    const u = auth.currentUser;
+    return !!(
+      u &&
+      u.emailVerified &&
+      u.email === ADMIN
+    );
+  }
+
+  gate = function () {
+    authed = isAdmin();
+
+    $("gate").classList.toggle("hide", authed);
+    $("dash").classList.toggle("hide", !authed);
+
+    if (authed) {
+      fill();
+      return;
+    }
+
+    $("gate").innerHTML =
+      '<h2>Admin Login</h2>' +
+      '<p>IZAAN CURTAINS & WALLPAPERS</p>' +
+      '<button class="btn fill" id="googleLogin">' +
+      'Sign in with Google</button>' +
+      '<div class="msg" id="gm"></div>';
+
+    $("googleLogin").onclick = async function () {
+      try {
+        await signInWithPopup(
+          auth,
+          new GoogleAuthProvider()
+        );
+
+        if (!isAdmin()) {
+          await signOut(auth);
+          $("gm").textContent = "Access denied.";
+        }
+      } catch (e) {
+        if ($("gm")) $("gm").textContent = e.message;
+      }
+    };
+  };
+
+  onAuthStateChanged(auth, function () {
+    authed = isAdmin();
+
+    if (location.hash === "#admin") {
+      gate();
+    }
+  });
+
+  $("lock").onclick = async function () {
+    await signOut(auth);
+    authed = false;
+    gate();
+  };
+
+  function refresh() {
+    render();
+    loadAssetSlides();
+
+    if (isAdmin()) lists();
+  }
+
+  function watch(name, callback) {
+    onSnapshot(
+      collection(db, name),
+      function (snapshot) {
+        callback(snapshot.docs.map(function (d) {
+          return d.data();
+        }));
+        refresh();
+      },
+      function (e) {
+        console.error(name, e);
+      }
+    );
+  }
+
+  watch("products", function (data) {
+    P = data.filter(x => x.id !== "__meta");
+
+    if (!data.some(x => x.id === "__meta")) {
+      if (!P.length) P = DEF.slice();
+    }
+  });
+
+  watch("gallery", function (data) {
+    G = data.sort((a,b) => a.order-b.order);
+  });
+
+  watch("slides", function (data) {
+    SL = [];
+    data.forEach(function (x) {
+      SL[x.order] = x.src;
+    });
+  });
+
+  onSnapshot(doc(db, "settings", "main"), function (d) {
+    if (d.exists()) {
+      S = Object.assign(S, d.data());
+      delete S.pin;
+    }
+    refresh();
+  });
+
+  onSnapshot(doc(db, "settings", "logo"), function (d) {
+    LG = d.exists() ? d.data().src || "" : "";
+    refresh();
+  });
+
+  async function replaceCollection(name, rows) {
+    const old = await getDocs(collection(db, name));
+    const batch = writeBatch(db);
+    const ids = new Set(rows.map(x => x.id));
+
+    old.docs.forEach(function (d) {
+      if (!ids.has(d.id)) batch.delete(d.ref);
+    });
+
+    rows.forEach(function (x) {
+      batch.set(doc(db, name, x.id), x);
+    });
+
+    await batch.commit();
+  }
+
+  let queue = Promise.resolve();
+
+  save = function () {
+    if (!isAdmin()) {
+      alert("Admin access required.");
+      return;
+    }
+
+    const products = JSON.parse(JSON.stringify(P));
+    const gallery = JSON.parse(JSON.stringify(G));
+    const slides = SL.slice();
+    const logo = LG;
+
+    queue = queue.then(async function () {
+      await replaceCollection(
+        "products",
+        products.concat([{id:"__meta"}])
+      );
+
+      await replaceCollection(
+        "gallery",
+        gallery.map(function (g, i) {
+          return Object.assign({}, g, {
+            id: "g" + i,
+            order: i
+          });
+        })
+      );
+
+      await replaceCollection(
+        "slides",
+        slides.flatMap(function (s, i) {
+          return s ? [{
+            id: "s" + i,
+            order: i,
+            src: s
+          }] : [];
+        })
+      );
+
+      await setDoc(
+        doc(db, "settings", "logo"),
+        {src: logo}
+      );
+
+      refresh();
+
+    }).catch(function (e) {
+      alert("Cloud save failed: " + e.message);
+    });
+  };
+
+  $("ss").onclick = async function () {
+    if (!isAdmin()) return;
+
+    const data = {
+      wa: $("sw").value.trim(),
+      ph: $("sp").value.trim(),
+      em: $("se").value.trim(),
+      ad: $("sa").value.trim(),
+      mp: $("sm").value.trim()
+    };
+
+    try {
+      await setDoc(
+        doc(db, "settings", "main"),
+        data
+      );
+
+      $("sms").textContent = "Cloud saved ✓";
+
+    } catch (e) {
+      $("sms").textContent = e.message;
+    }
+  };
+
+  route();
+  console.log("IZAAN Firebase connected");
+
+})().catch(function (e) {
+  console.error("Firebase error:", e);
+});
