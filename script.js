@@ -1,6 +1,28 @@
-
-var CATS=["Curtains","Blackout","Sheer","Wallpapers","Roller Blinds","Zebra Blinds","Motorized"];
-var TILES=[["Curtains","Velvet, linen and drapes","#6b2c3a"],["Wallpapers","Textures, damask and modern prints","#3c5a49"],["Roller Blinds","Roller and zebra blinds","#5d6166"],["Motorized","Remote and smart control","#3a3d42"]];
+var CATS=["Curtains","Blackout","Sheer","Wallpapers","Roller Blinds","Roman Blinds","Zebra Blinds","Motorized"];
+var ZB=[
+{t:"Slate Grey Zebra Blinds – Living Room",d:"Twin windows dressed in slate-grey day-and-night zebra blinds with matching cassettes.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-001.jpg",w:2576,h:1450},
+{t:"Slate Grey Zebra Blind – Close-Up",d:"Brushed-texture grey fabric with alternating sheer and solid bands and a glossy head rail.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-002.jpg",w:1450,h:2576},
+{t:"Ivory Zebra Blinds – Prayer Hall",d:"Soft ivory zebra blinds set inside teak window frames against marble-finish walls.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-003.jpg",w:1160,h:2061},
+{t:"Ivory Zebra Blind – Teak-Framed Window",d:"Textured cream bands that filter daylight gently while keeping a clean, calm look.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-004.jpg",w:1450,h:2576},
+{t:"Ivory Zebra Blind – Wide Window",d:"A made-to-measure wide blind with smooth chain control and a neat white bottom rail.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-005.jpg",w:2576,h:1450},
+{t:"Mauve Zebra Blinds – Bedroom",d:"Warm mauve-taupe zebra blinds on two bedroom windows for privacy and soft light.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-006.jpg",w:2576,h:1450},
+{t:"Mauve Zebra Blind – Single Window",d:"Smooth mauve bands that adjust between privacy and filtered daylight.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-007.jpg",w:1450,h:2576},
+{t:"Walnut Wood-Grain Zebra Blind",d:"Rich brown wood-grain fabric that adds warmth to a light-coloured wall.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-008.jpg",w:1450,h:2576},
+{t:"Walnut Wood-Grain Zebra Blind – Panelled Niche",d:"Wood-grain bands glowing with daylight, fitted neatly inside a panelled shelf niche.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-009.jpg",w:1232,h:2190},
+{t:"Sand Beige Zebra Blind",d:"A soft sand-beige blind that suits neutral rooms and modern interiors.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-010.jpg",w:1450,h:2576},
+{t:"Sand Beige Zebra Blinds – Wood-Framed Bedroom",d:"Two beige zebra blinds fitted inside warm wood-finish window frames.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-011.jpg",w:2576,h:1190},
+{t:"Sand Beige Zebra Blind – Behind the Headboard",d:"A wide beige blind framed in wood, giving a bedroom headboard wall a tailored finish.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-012.jpg",w:2576,h:1190},
+{t:"Leaf-Print Zebra Blinds – Pattern Collection",d:"Golden and brown leaf-motif designs on alternating sheer and solid bands.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-013.jpg",w:1747,h:2560},
+{t:"Pearl Grey Zebra Blind – Teak Window",d:"Light pearl-grey textured bands with a chain control, framed by a teak window.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-014.jpg",w:1190,h:2576},
+{t:"Taupe Wood-Grain Zebra Blinds – Lounge",d:"Natural taupe wood-grain blinds that pair well with a warm brown corner sofa.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-015.jpg",w:1280,h:1280},
+{t:"Black and Grey Zebra Blind – Dining Area",d:"Bold black bands with grey sheer stripes for a sharp, contemporary look.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-016.jpg",w:864,h:1080},
+{t:"Golden Brown Wood-Grain Zebra Blinds",d:"Golden-brown wood-grain blinds inside wood-finish frames, warm and elegant.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-017.jpg",w:1280,h:960},
+{t:"Walnut Brown Zebra Blinds – Living Room",d:"Brown wood-grain bands that let daylight through softly, matched to a brown sofa.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-018.jpg",w:1280,h:960},
+{t:"Charcoal Wood-Grain Zebra Blinds – Bedroom",d:"Charcoal grey wood-grain blinds for a calm, modern bedroom.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-019.jpg",w:960,h:1280},
+{t:"Caramel Wood-Grain Zebra Blind – Close View",d:"Warm caramel wood-grain fabric with soft translucent bands.",s:"assets/products/zebra-blinds/izaan-zebra-blinds-020.jpg",w:960,h:1280}];
+function ZBP(){return ZB.map(function(z,i){return {id:"z"+i,name:z.t,cat:"Zebra Blinds",desc:z.d,zs:z.s,zi:i,w:z.w,h:z.h}})}
+function zcard(p){return '<div class="card zc rv in"><button class="zph" data-z="'+p.zi+'" aria-label="View '+esc(p.name)+' full screen"><img src="'+p.zs+'" width="'+p.w+'" height="'+p.h+'" alt="'+esc(p.name)+'" loading="lazy" decoding="async"><span class="zx">View</span></button><div class="b"><div class="tag">Zebra Blinds</div><h3>'+esc(p.name)+'</h3><p>'+esc(p.desc)+'</p><a href="#quote" data-pre="Zebra Blinds">Get a quote →</a></div></div>'}
+var TILES=[["Curtains","Velvet, linen and drapes","#6b2c3a"],["Wallpapers","Textures, damask and modern prints","#3c5a49"],["Roller Blinds","Roller and zebra blinds","#5d6166"],["Roman Blinds","Tailored fabric blinds","#6b665a"],["Motorized","Remote and smart control","#3a3d42"]];
 var DEF=[
 {id:"d1",name:"Velvet Drape",cat:"Curtains",desc:"Rich, heavy velvet with a luxurious fall.",c:"#6b2c3a"},
 {id:"d2",name:"Linen Weave",cat:"Curtains",desc:"Natural textured linen in soft neutrals.",c:"#bdb7a9"},
@@ -11,9 +33,8 @@ var DEF=[
 {id:"d6",name:"Classic Roller",cat:"Roller Blinds",desc:"Clean, minimal roller blinds in many fabrics.",c:"#7d8b8f"},
 {id:"d7",name:"Zebra Duo",cat:"Zebra Blinds",desc:"Alternating sheer and solid bands for adjustable light.",c:"#b3b3ad"},
 {id:"d5",name:"Smart Track Curtain",cat:"Motorized",desc:"Remote-controlled motorized curtain system.",c:"#4d5258"}];
-
 var SLD=[{e:"Luxury Curtains",h:"Drapes That Define a Room",p:"Velvet, linen and sheer curtains, tailored to your windows.",c:"Curtains",b:"#4a4540"},{e:"Motorized Curtains",h:"Elegance at the Touch of a Button",p:"Silent motorized tracks with remote, wall and smart control.",c:"Motorized",b:"#3a3d42"},{e:"Blinds",h:"Light, Perfectly Balanced",p:"Roller and zebra blinds for clean, modern interiors.",c:"Roller Blinds",b:"#4b4f52"},{e:"Wallpapers",h:"Walls With Character",p:"Textured and patterned wallpapers for feature walls.",c:"Wallpapers",b:"#46433d"}];
-
+var BI=[{"id": "b-curtains-001", "cat": "Curtains", "name": "Mustard Velvet Drapes", "desc": "Floor-to-ceiling velvet drapes with a fitted pelmet.", "img": "assets/products/curtains/izaan-curtains-001.jpg"}, {"id": "b-curtains-002", "cat": "Curtains", "name": "Forest Green Velvet with Sheer", "desc": "Velvet side panels under a pelmet, with a soft sheer centre.", "img": "assets/products/curtains/izaan-curtains-002.jpg"}, {"id": "b-curtains-003", "cat": "Curtains", "name": "Champagne Velvet Curtains", "desc": "Soft beige velvet curtains with an even, elegant fall.", "img": "assets/products/curtains/izaan-curtains-003.jpg"}, {"id": "b-curtains-004", "cat": "Curtains", "name": "Sand Curtains with Sheer", "desc": "Warm sand curtains framing a white sheer in a living room.", "img": "assets/products/curtains/izaan-curtains-004.jpg"}, {"id": "b-curtains-005", "cat": "Curtains", "name": "Chocolate Brown Curtains", "desc": "Rich brown curtains layered with a white sheer.", "img": "assets/products/curtains/izaan-curtains-005.jpg"}, {"id": "b-curtains-006", "cat": "Curtains", "name": "Tan Curtains with Tie-Backs", "desc": "Tan curtains with tie-backs over soft white sheers.", "img": "assets/products/curtains/izaan-curtains-006.jpg"}, {"id": "b-curtains-007", "cat": "Curtains", "name": "Mocha Velvet Living Room Curtains", "desc": "Mocha velvet curtains with sheers for a refined living room.", "img": "assets/products/curtains/izaan-curtains-007.jpg"}, {"id": "b-curtains-008", "cat": "Curtains", "name": "Beige Bedroom Curtains", "desc": "Clean beige curtains with a soft, even fall.", "img": "assets/products/curtains/izaan-curtains-008.jpg"}, {"id": "b-curtains-009", "cat": "Curtains", "name": "Slate Grey Statement Curtain", "desc": "A full-wall grey curtain with deep, generous folds.", "img": "assets/products/curtains/izaan-curtains-009.jpg"}, {"id": "b-curtains-010", "cat": "Curtains", "name": "Taupe Curtains with Patterned Sheer", "desc": "Taupe curtains with a striped sheer over an arched window.", "img": "assets/products/curtains/izaan-curtains-010.jpg"}, {"id": "b-curtains-011", "cat": "Curtains", "name": "Bronze Hall Curtains", "desc": "Tall curtains and sheers for large halls and formal rooms.", "img": "assets/products/curtains/izaan-curtains-011.jpg"}, {"id": "b-sheer-001", "cat": "Sheer", "name": "White Sheer with Blue Accent", "desc": "Soft white sheer under a wooden pelmet, with a blue side curtain.", "img": "assets/products/sheer/izaan-sheer-001.jpg"}, {"id": "b-sheer-002", "cat": "Sheer", "name": "Soft White Sheer with Sage Curtains", "desc": "A light white sheer paired with sage tie-back curtains.", "img": "assets/products/sheer/izaan-sheer-002.jpg"}, {"id": "b-sheer-003", "cat": "Sheer", "name": "Cream Linen Sheer", "desc": "Cream sheer in a gentle wave fold that softens daylight.", "img": "assets/products/sheer/izaan-sheer-003.jpg"}, {"id": "b-curtains-012", "cat": "Curtains", "name": "Beige Curtains with Wooden Pelmet", "desc": "Beige curtains and sheers under a wooden pelmet in a bedroom.", "img": "assets/products/curtains/izaan-curtains-012.jpg"}, {"id": "b-curtains-013", "cat": "Curtains", "name": "Beige Tie-Back Curtains with Sheer", "desc": "Beige tie-back curtains over a soft white sheer.", "img": "assets/products/curtains/izaan-curtains-013.jpg"}, {"id": "b-curtains-014", "cat": "Curtains", "name": "Double-Height Stair Window Curtains", "desc": "Tall sheers with curtains on each side for a double-height window.", "img": "assets/products/curtains/izaan-curtains-014.jpg"}, {"id": "b-curtains-015", "cat": "Curtains", "name": "Cream Sheer with Gold Side Curtain", "desc": "Cream sheer curtains with a textured gold side curtain in a bedroom.", "img": "assets/products/curtains/izaan-curtains-015.jpg"}, {"id": "b-curtains-016", "cat": "Curtains", "name": "Taupe Curtains with Sheer", "desc": "Tall taupe curtains and a white sheer beside a panelled window blind.", "img": "assets/products/curtains/izaan-curtains-016.jpg"}, {"id": "b-curtains-017", "cat": "Curtains", "name": "Ivory Curtains for Living Rooms", "desc": "Soft ivory curtains with a cream blind in the centre niche.", "img": "assets/products/curtains/izaan-curtains-017.jpg"}];
 /* ---- Data layer: all reads/writes go through Store. To move to Firebase later,
    replace Store.get/Store.set (see README.md) — nothing else needs to change. ---- */
 var Store={get:function(k){return localStorage.getItem(k)},set:function(k,v){localStorage.setItem(k,v)}};
@@ -27,25 +48,19 @@ function wnum(){return (S.wa||"").replace(/\D/g,"")}
 function waLink(t){return "https://wa.me/"+wnum()+"?text="+encodeURIComponent(t)}
 function pat(c){return c=="Wallpapers"?"wall":"drape"}
 function render(){
-$("brand").innerHTML=LG?'<img src="'+LG+'" alt="IZAAN CURTAINS">':'<img src="assets/logo.png" alt="IZAAN CURTAINS" onerror="this.outerHTML=\'<span class=&quot;wm&quot;>IZAAN<b> ·</b> CURTAINS</span>\'">';
+var LOGO0="assets/logo.png";$("brand").innerHTML=LG?'<img src="'+LG+'" alt="IZAAN CURTAINS">':'<img src="'+LOGO0+'" alt="IZAAN Curtains and Wallpapers">';
 $("tiles").innerHTML=TILES.map(function(t){var n=t[0]=="Roller Blinds"?"Blinds":t[0];return '<a class="tile rv" href="#collections" data-pre="'+t[0]+'"><div class="bg '+pat(t[0])+'" style="background-color:'+t[2]+'"></div><div><h3>'+n+'</h3><p>'+t[1]+'</p></div></a>'}).join("");
 var t='<button class="tab'+(cat=="All"?" on":"")+'" data-c="All">All</button>';
 CATS.forEach(function(c){t+='<button class="tab'+(cat==c?" on":"")+'" data-c="'+c+'">'+c+'</button>'});
 $("tabs").innerHTML=t;
-$("grid").innerHTML=P.filter(function(p){return cat=="All"||p.cat==cat}).map(function(p){
-var st=p.img?'background-image:url('+p.img+')':'background-color:#ebe8e2';
-return '<div class="card rv in"><div class="ph'+(p.img?"":" "+pat(p.cat))+'" style="'+st+'"></div><div class="b"><div class="tag">'+esc(p.cat)+'</div><h3>'+esc(p.name)+'</h3><p>'+esc(p.desc||"")+'</p><a href="#quote" data-pre="'+esc(p.cat)+'">Get a quote →</a></div></div>'}).join("");
+$("grid").innerHTML=BI.concat(P,ZBP()).filter(function(p){return cat=="All"||p.cat==cat}).map(function(p){
+if(p.zs)return zcard(p);return '<div class="card rv in"><div class="ph'+(p.img?"":" "+pat(p.cat))+'"'+(p.img?'':' style="background-color:#ebe8e2"')+'>'+(p.img?'<img loading="lazy" decoding="async" src="'+esc(p.img)+'" alt="'+esc(p.name)+'">':"")+'</div><div class="b"><div class="tag">'+esc(p.cat)+'</div><h3>'+esc(p.name)+'</h3><p>'+esc(p.desc||"")+'</p><a href="#quote" data-pre="'+esc(p.cat)+'">Get a quote →</a></div></div>'}).join("");
 renderGal();slidesInit();
 $("qc").innerHTML=CATS.map(function(c){return "<option>"+c+"</option>"}).join("");
 $("pc").innerHTML=$("qc").innerHTML;$("gc").innerHTML=$("qc").innerHTML;
 var i="";
 if(S.ph)i+='<p><b>Phone</b>'+esc(S.ph)+'</p>';
 if(S.wa)i+='<p><b>WhatsApp</b>+'+esc(wnum())+'</p>';
-
-/* IZAAN — Additional contact number */
-i+='<p><b>Phone 2</b><a href="tel:+919567140786">+91 95671 40786</a></p>';
-i+='<p><b>WhatsApp 2</b><a href="https://wa.me/919567140786" target="_blank" rel="noopener">+91 95671 40786</a></p>';
-
 if(S.em)i+='<p><b>Email</b>'+esc(S.em)+'</p>';
 if(S.ad)i+='<p><b>Address</b>'+esc(S.ad)+'</p>';
 $("info").innerHTML=i||'<p>Contact details will appear here once added in the admin panel.</p>';
@@ -53,11 +68,12 @@ var q=S.mp||"IZAAN CURTAINS Kerala";
 $("map").href=/^https?:/.test(q)?q:"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);
 $("wa").href=waLink("Hello IZAAN CURTAINS, I’d like to enquire about your products.");
 $("yr").textContent=new Date().getFullYear();reveal()}
-function vis(){return G.length?G.filter(function(g){return gcat=="All"||g.c==gcat}):[]}
+function GA(){return G.concat(ZB.map(function(z){return {s:z.s,c:"Zebra Blinds",t:z.t,z:1}}))}
+function vis(){return GA().filter(function(g){return gcat=="All"||g.c==gcat})}
 function renderGal(){
-var cs=["All"].concat(CATS.filter(function(c){return G.some(function(g){return g.c==c})}));
-$("gtabs").innerHTML=G.length?cs.map(function(c){return '<button class="tab'+(gcat==c?" on":"")+'" data-g="'+c+'">'+c+'</button>'}).join(""):"";
-$("gal").innerHTML=G.length?vis().map(function(g,i){return '<div class="gi" data-i="'+i+'" data-c="'+esc(g.c)+'" style="background-image:url('+g.s+')"></div>'}).join(""):
+var cs=["All"].concat(CATS.filter(function(c){return GA().some(function(g){return g.c==c})}));
+$("gtabs").innerHTML=GA().length?cs.map(function(c){return '<button class="tab'+(gcat==c?" on":"")+'" data-g="'+c+'">'+c+'</button>'}).join(""):"";
+$("gal").innerHTML=GA().length?vis().map(function(g,i){if(g.z)return '<div class="gi" data-i="'+i+'" data-c="'+esc(g.t)+'"><img src="'+g.s+'" alt="'+esc(g.t)+'" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></div>';return '<div class="gi" data-i="'+i+'" data-c="'+esc(g.c)+'" style="background-image:url('+g.s+')"></div>'}).join(""):
 DEF.slice(0,8).map(function(p){return '<div class="gi '+pat(p.cat)+'" data-c="'+p.cat+'" style="background-color:#ebe8e2"></div>'}).join("")}
 function reveal(){var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");o.unobserve(x.target)}})},{threshold:.12});
 document.querySelectorAll(".rv:not(.in)").forEach(function(el){o.observe(el)})}
@@ -78,18 +94,21 @@ $("top").addEventListener("touchend",function(e){var d=e.changedTouches[0].clien
 /* nav + clicks */
 function menu(o){$("lk").classList.toggle("open",o);$("bg").classList.toggle("on",o);$("bg").setAttribute("aria-expanded",o)}
 $("bg").onclick=function(){menu(!$("lk").classList.contains("open"))};
-var lbL=[],lbI=0;
-function lb(i){lbI=(i+lbL.length)%lbL.length;$("lb").children[1].src=lbL[lbI];$("lb").style.display="flex"}
+var lbL=[],lbC=[],lbI=0;function lbx(){$("lb").style.display="none";document.body.style.overflow=""}
+function lb(i){lbI=(i+lbL.length)%lbL.length;var im=$("lb").children[1];im.src=lbL[lbI];im.alt=lbC[lbI]||"";$("lcap").textContent=(lbC[lbI]?lbC[lbI]+"  ·  ":"")+(lbI+1)+" / "+lbL.length;$("lb").style.display="flex";document.body.style.overflow="hidden"}
 document.addEventListener("click",function(e){var t=e.target;
 if(t.closest("#lk a"))menu(false);
 var tb=t.closest("#tabs .tab");if(tb){cat=tb.dataset.c;render();return}
 var gt=t.closest("#gtabs .tab");if(gt){gcat=gt.dataset.g;renderGal();return}
 var a=t.closest("[data-pre]");if(a){cat=a.dataset.pre=="Roller Blinds"||CATS.indexOf(a.dataset.pre)>-1?a.dataset.pre:"All";$("qc").value=a.dataset.pre;render()}
 var ds=t.closest("[data-s]");if(ds)go(+ds.dataset.s);
-var gi=t.closest(".gi");if(gi&&G.length){lbL=vis().map(function(g){return g.s});lb(+gi.dataset.i)}
+var gi=t.closest(".gi");if(gi&&GA().length){lbL=vis().map(function(g){return g.s});lbC=vis().map(function(g){return g.t||g.c});lb(+gi.dataset.i)}
+var zz=t.closest("[data-z]");if(zz){lbL=ZB.map(function(z){return z.s});lbC=ZB.map(function(z){return z.t});lb(+zz.dataset.z);return}
 if(t.id=="lp"){lb(lbI-1);return}if(t.id=="ln"){lb(lbI+1);return}
-if(t.id=="lb"||t.tagName=="IMG"&&t.closest("#lb"))$("lb").style.display="none"});
-document.addEventListener("keydown",function(e){if(e.key=="Escape")$("lb").style.display="none"});
+if(t.id=="lb"||t.id=="lx"||t.tagName=="IMG"&&t.closest("#lb"))lbx()});
+document.addEventListener("keydown",function(e){if($("lb").style.display!="flex")return;if(e.key=="Escape")lbx();if(e.key=="ArrowLeft")lb(lbI-1);if(e.key=="ArrowRight")lb(lbI+1)});
+var lx0=0;$("lb").addEventListener("touchstart",function(e){lx0=e.touches[0].clientX},{passive:true});
+$("lb").addEventListener("touchend",function(e){var d=e.changedTouches[0].clientX-lx0;if(Math.abs(d)>60&&lbL.length>1)lb(lbI+(d<0?1:-1))});
 $("qf").addEventListener("submit",function(e){e.preventDefault();
 if(!wnum()){$("qm").textContent="WhatsApp number isn’t set yet. Add it in the admin panel to enable sending.";return}
 var m="Hello IZAAN CURTAINS, I’d like a free quotation.\nName: "+$("qn").value+"\nPhone: "+$("qp").value+"\nProduct: "+$("qc").value+"\nQty: "+$("qw").value+"\nLocation: "+$("ql").value+"\nDetails: "+$("qd").value;
@@ -107,7 +126,7 @@ function fill(){$("sw").value=S.wa;$("sp").value=S.ph;$("se").value=S.em;$("sa")
 function lists(){
 $("ll").innerHTML=LG?'<div class="row"><img src="'+LG+'" alt="" style="width:auto;height:46px"><button class="btn sm" data-dl="1">Remove</button></div>':'<p class="note">No logo uploaded yet — a text placeholder is shown in the header.</p>';
 $("sll").innerHTML=SLD.map(function(d,i){return SL[i]?'<div class="row"><span style="display:flex;gap:10px;align-items:center"><img src="'+SL[i]+'" alt="">'+d.e+'</span><button class="btn sm" data-ds="'+i+'">Remove</button></div>':""}).join("");
-$("pl").innerHTML=P.map(function(p){return '<div class="row"><span style="display:flex;gap:10px;align-items:center">'+(p.img?'<img src="'+p.img+'" alt="">':'<i class="'+pat(p.cat)+'" style="background-color:'+(p.c||"#b3b3ad")+'"></i>')+esc(p.name)+' · '+esc(p.cat)+'</span><button class="btn sm" data-dp="'+p.id+'">Delete</button></div>'}).join("");
+$("pl").innerHTML='<p class="note">'+BI.length+' built-in products come from the website files (assets/products) and are always shown.</p>'+P.map(function(p){return '<div class="row"><span style="display:flex;gap:10px;align-items:center">'+(p.img?'<img src="'+p.img+'" alt="">':'<i class="'+pat(p.cat)+'" style="background-color:'+(p.c||"#b3b3ad")+'"></i>')+esc(p.name)+' · '+esc(p.cat)+'</span><button class="btn sm" data-dp="'+p.id+'">Delete</button></div>'}).join("");
 $("gl").innerHTML=G.map(function(g,i){return '<div class="row"><span style="display:flex;gap:10px;align-items:center"><img src="'+g.s+'" alt="">'+esc(g.c)+'</span><button class="btn sm" data-dg="'+i+'">Delete</button></div>'}).join("")||'<p class="note">No photos yet — placeholders show until you upload.</p>'}
 function save(){if(!(sv("iz_p",P)&&sv("iz_g",G)&&sv("iz_sl",SL)&&sv("iz_logo",LG)))alert("Browser storage is full or unavailable. Try fewer or smaller photos.");render();lists()}
 $("ss").onclick=function(){S.wa=$("sw").value.trim();S.ph=$("sp").value.trim();S.em=$("se").value.trim();S.ad=$("sa").value.trim();S.mp=$("sm").value.trim();sv("iz_s",S);render();$("sms").textContent="Saved ✓"};
@@ -126,341 +145,3 @@ if(d.dl){LG="";save()}});
 $("lock").onclick=function(){authed=false;gate()};
 window.addEventListener("hashchange",route);
 render();loadAssetSlides();route();
-
-/* IZAAN — Firebase Cloud Connection */
-
-(async function () {
-  const config = window.IZAAN_FIREBASE_CONFIG;
-
-  if (!config) {
-    console.error("Firebase config missing");
-    return;
-  }
-
-  const { initializeApp } = await import(
-    "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js"
-  );
-
-  const {
-    getAuth,
-    GoogleAuthProvider,
-    signInWithPopup,
-    onAuthStateChanged,
-    signOut
-  } = await import(
-    "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js"
-  );
-
-  const {
-    getFirestore,
-    collection,
-    doc,
-    onSnapshot,
-    setDoc,
-    getDocs,
-    writeBatch
-  } = await import(
-    "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js"
-  );
-
-  const app = initializeApp(config);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-  const ADMIN = "curtainsizaan@gmail.com";
-
-  authed = false;
-  delete S.pin;
-
-  function isAdmin() {
-    const u = auth.currentUser;
-    return !!(
-      u &&
-      u.emailVerified &&
-      u.email === ADMIN
-    );
-  }
-
-  gate = function () {
-    authed = isAdmin();
-
-    $("gate").classList.toggle("hide", authed);
-    $("dash").classList.toggle("hide", !authed);
-
-    if (authed) {
-      fill();
-      return;
-    }
-
-    $("gate").innerHTML =
-      '<h2>Admin Login</h2>' +
-      '<p>IZAAN CURTAINS & WALLPAPERS</p>' +
-      '<button class="btn fill" id="googleLogin">' +
-      'Sign in with Google</button>' +
-      '<div class="msg" id="gm"></div>';
-
-    $("googleLogin").onclick = async function () {
-      try {
-        await signInWithPopup(
-          auth,
-          new GoogleAuthProvider()
-        );
-
-        if (!isAdmin()) {
-          await signOut(auth);
-          $("gm").textContent = "Access denied.";
-        }
-      } catch (e) {
-        if ($("gm")) $("gm").textContent = e.message;
-      }
-    };
-  };
-
-  onAuthStateChanged(auth, function () {
-    authed = isAdmin();
-
-    if (location.hash === "#admin") {
-      gate();
-    }
-  });
-
-  $("lock").onclick = async function () {
-    await signOut(auth);
-    authed = false;
-    gate();
-  };
-
-  function refresh() {
-    render();
-    loadAssetSlides();
-
-    if (isAdmin()) lists();
-  }
-
-  function watch(name, callback) {
-    onSnapshot(
-      collection(db, name),
-      function (snapshot) {
-        callback(snapshot.docs.map(function (d) {
-          return d.data();
-        }));
-        refresh();
-      },
-      function (e) {
-        console.error(name, e);
-      }
-    );
-  }
-
-  watch("products", function (data) {
-    P = data.filter(x => x.id !== "__meta");
-
-    if (!data.some(x => x.id === "__meta")) {
-      if (!P.length) P = DEF.slice();
-    }
-  });
-
-  watch("gallery", function (data) {
-    G = data.sort((a,b) => a.order-b.order);
-  });
-
-  watch("slides", function (data) {
-    SL = [];
-    data.forEach(function (x) {
-      SL[x.order] = x.src;
-    });
-  });
-
-  onSnapshot(doc(db, "settings", "main"), function (d) {
-    if (d.exists()) {
-      S = Object.assign(S, d.data());
-      delete S.pin;
-    }
-    refresh();
-  });
-
-  onSnapshot(doc(db, "settings", "logo"), function (d) {
-    LG = d.exists() ? d.data().src || "" : "";
-    refresh();
-  });
-
-  async function replaceCollection(name, rows) {
-    const old = await getDocs(collection(db, name));
-    const batch = writeBatch(db);
-    const ids = new Set(rows.map(x => x.id));
-
-    old.docs.forEach(function (d) {
-      if (!ids.has(d.id)) batch.delete(d.ref);
-    });
-
-    rows.forEach(function (x) {
-      batch.set(doc(db, name, x.id), x);
-    });
-
-    await batch.commit();
-  }
-
-  let queue = Promise.resolve();
-
-  save = function () {
-    if (!isAdmin()) {
-      alert("Admin access required.");
-      return;
-    }
-
-    const products = JSON.parse(JSON.stringify(P));
-    const gallery = JSON.parse(JSON.stringify(G));
-    const slides = SL.slice();
-    const logo = LG;
-
-    queue = queue.then(async function () {
-      await replaceCollection(
-        "products",
-        products.concat([{id:"__meta"}])
-      );
-
-      await replaceCollection(
-        "gallery",
-        gallery.map(function (g, i) {
-          return Object.assign({}, g, {
-            id: "g" + i,
-            order: i
-          });
-        })
-      );
-
-      await replaceCollection(
-        "slides",
-        slides.flatMap(function (s, i) {
-          return s ? [{
-            id: "s" + i,
-            order: i,
-            src: s
-          }] : [];
-        })
-      );
-
-      await setDoc(
-        doc(db, "settings", "logo"),
-        {src: logo}
-      );
-
-      refresh();
-
-    }).catch(function (e) {
-      alert("Cloud save failed: " + e.message);
-    });
-  };
-
-  $("ss").onclick = async function () {
-    if (!isAdmin()) return;
-
-    const data = {
-      wa: $("sw").value.trim(),
-      ph: $("sp").value.trim(),
-      em: $("se").value.trim(),
-      ad: $("sa").value.trim(),
-      mp: $("sm").value.trim()
-    };
-
-    try {
-      await setDoc(
-        doc(db, "settings", "main"),
-        data
-      );
-
-      $("sms").textContent = "Cloud saved ✓";
-
-    } catch (e) {
-      $("sms").textContent = e.message;
-    }
-  };
-
-  route();
-  console.log("IZAAN Firebase connected");
-
-})().catch(function (e) {
-  console.error("Firebase error:", e);
-});
-
-/* IZAAN Automatic Image Compression */
-
-shrink = function(f, w, type, cb) {
-  const MAX_BYTES = 450 * 1024;
-  const reader = new FileReader();
-
-  reader.onerror = function() {
-    alert("Unable to read image.");
-  };
-
-  reader.onload = function() {
-    const img = new Image();
-
-    img.onerror = function() {
-      alert("Unsupported image format.");
-    };
-
-    img.onload = function() {
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-
-      let scale = Math.min(
-        1, w / Math.max(img.width, img.height)
-      );
-
-      let quality = 0.88;
-      let result = "";
-      const format = type === "png"
-        ? "image/png"
-        : "image/jpeg";
-
-      for (let i = 0; i < 60; i++) {
-        canvas.width = Math.max(
-          1, Math.round(img.width * scale)
-        );
-
-        canvas.height = Math.max(
-          1, Math.round(img.height * scale)
-        );
-
-        ctx.clearRect(
-          0, 0, canvas.width, canvas.height
-        );
-
-        if (format === "image/jpeg") {
-          ctx.fillStyle = "#ffffff";
-          ctx.fillRect(
-            0, 0, canvas.width, canvas.height
-          );
-        }
-
-        ctx.drawImage(
-          img, 0, 0,
-          canvas.width, canvas.height
-        );
-
-        result = canvas.toDataURL(format, quality);
-
-        if (
-          new Blob([result]).size <= MAX_BYTES
-          && result.startsWith("data:image/")
-        ) {
-          cb(result);
-          return;
-        }
-
-        if (format === "image/jpeg" && quality > 0.55) {
-          quality -= 0.07;
-        } else {
-          scale *= 0.85;
-          quality = 0.85;
-        }
-      }
-
-      alert("Image compression failed. Try another photo.");
-    };
-
-    img.src = reader.result;
-  };
-
-  reader.readAsDataURL(f);
-};
