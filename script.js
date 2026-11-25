@@ -115,7 +115,20 @@ $("yr").textContent=new Date().getFullYear();
 reveal()
 }
 
-function GA(){return G.concat(ZB.map(function(z){return {s:z.s,c:"Zebra Blinds",t:z.t,z:1}}))}
+/* UPDATED GALLERY */
+function GA(){
+return G.concat(
+BI.map(function(p){
+return {s:p.img,c:p.cat,t:p.name,z:1}
+}),
+ZB.filter(function(z){
+return !z.s.endsWith("/z18.jpg")
+}).map(function(z){
+return {s:z.s,c:"Zebra Blinds",t:z.t,z:1}
+})
+)
+}
+
 function vis(){return GA().filter(function(g){return gcat=="All"||g.c==gcat})}
 
 function renderGal(){
